@@ -15,50 +15,50 @@ test_size = [0.30, 0.35, 0.40, 0.45]
 random = np.random.randint(43000)
 
 
-def run_naive_bayes():
-    # Splitting the data into training and testing data
-    # state = int(size * 100)
-    review_train, review_test, label_train, label_test = train_test_split(df['text_'], df['label'], test_size=size,
-                                                                          random_state=35)
+def runNB():
+    def run_naive_bayes():
+        # Splitting the data into training and testing data
+        # state = int(size * 100)
+        review_train, review_test, label_train, label_test = train_test_split(df['text_'], df['label'], test_size=size,
+                                                                              random_state=35)
 
-    classifier = MultinomialNB()
-    pipeline = Pipeline([
-        ('bag_of_words', CountVectorizer()),
-        ('tfidf', TfidfTransformer()),
-        ('classifier', classifier)
-    ])
+        classifier = MultinomialNB()
+        pipeline = Pipeline([
+            ('bag_of_words', CountVectorizer()),
+            ('tfidf', TfidfTransformer()),
+            ('classifier', classifier)
+        ])
 
-    pipeline.fit(review_train, label_train)
-    predictions = pipeline.predict(review_test)
-    print(predictions)
+        pipeline.fit(review_train, label_train)
+        predictions = pipeline.predict(review_test)
+        print(predictions)
 
-    # Confusion matrix of Multinomial Naive Bayes
-    con_mat = confusion_matrix(label_test, predictions)
-    disp = ConfusionMatrixDisplay(confusion_matrix=con_mat, display_labels=['Fake', 'Original'])
-    disp.plot(cmap=plt.cm.Blues)
-    # plt.title('Confusion matrix for test size ',size)
-    plt.show()
+        # Confusion matrix of Multinomial Naive Bayes
+        con_mat = confusion_matrix(label_test, predictions)
+        disp = ConfusionMatrixDisplay(confusion_matrix=con_mat, display_labels=['Fake', 'Original'])
+        disp.plot(cmap=plt.cm.Blues)
+        # plt.title('Confusion matrix for test size ',size)
+        plt.show()
 
-    # Accuracy score
-    accuracy_nb = str(np.round(accuracy_score(label_test, predictions) * 100, 2))
-    print("\nACCURACY OF MULTINOMIAL NAIVE BAYES MODEL FOR TEST SIZE ", size, " = \n", accuracy_nb + '%')
+        # Accuracy score
+        accuracy_nb = str(np.round(accuracy_score(label_test, predictions) * 100, 2))
+        print("\nACCURACY OF MULTINOMIAL NAIVE BAYES MODEL FOR TEST SIZE ", size, " = \n", accuracy_nb + '%')
 
-    # Classification report
-    clf_report = classification_report(label_test, predictions)
-    print("\nCLASSIFICATION REPORT FOR TEST SIZE ", size, " = \n", clf_report)
+        # Classification report
+        clf_report = classification_report(label_test, predictions)
+        print("\nCLASSIFICATION REPORT FOR TEST SIZE ", size, " = \n", clf_report)
 
-    # Prediction
-    review = df['text_'][random]
-    print('Review : ', data['text_'][random])
-    print('\nReview is classified as : ', df['label'][random])
-    pred = pipeline.predict([review])
-    print('\nNaive Bayes result : ', pred)
+        # Prediction
+        review = df['text_'][random]
+        print('Review : ', data['text_'][random])
+        print('\nReview is classified as : ', df['label'][random])
+        pred = pipeline.predict([review])
+        print('\nNaive Bayes result : ', pred)
 
+    i = 1
 
-i = 1
-
-for size in test_size:
-    print('-----------------ITERATION ', i, '-----------------\n\n')
-    run_naive_bayes()
-    print('\n\n\n')
-    i += 1
+    for size in test_size:
+        print('-----------------ITERATION ', i, '-----------------\n\n')
+        run_naive_bayes()
+        print('\n\n\n')
+        i += 1

@@ -16,6 +16,7 @@ df = df.drop(cols[0], axis=1)
 print("\nDATA AFTER REMOVING UNNECESSARY COLUMN\n", df.head())
 
 # Adding new column 'length' to data which shows the length of the review
+df['text_'] = df['text_'].fillna('')
 df['length'] = df['text_'].apply(len)
 print('\nDATA INFORMATION\n', df.info())
 print('\nFIRST FEW RECORDS IN DATA\n', df.head())
@@ -63,3 +64,5 @@ print(bow_msg)
 tfidf_reviews = tfidf_transformer.transform(bow_transformed_reviews)
 print("Shape:", tfidf_reviews.shape)
 print("No. of Dimensions:", tfidf_reviews.ndim)
+
+df.to_csv('data.csv')
