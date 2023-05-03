@@ -1,16 +1,16 @@
-import time
-
 import pandas as pd
 import matplotlib.pyplot as plt
-import string, nltk
+import string
+import nltk
 import warnings
 import streamlit as st
-
-warnings.filterwarnings('ignore')
 from nltk.corpus import stopwords
 from nltk import word_tokenize
 from nltk.stem import PorterStemmer
 from nltk.stem import WordNetLemmatizer
+
+warnings.filterwarnings('ignore')
+
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
@@ -18,7 +18,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 # Page Title
 st.title("Data Cleaning")
 
-# File Choser
+# File Chooser
 file = st.file_uploader("Choose a file")
 
 nltk.download('wordnet')
@@ -35,21 +35,17 @@ if file is not None:
         print("DATA DESCRIPTION\n", df.describe(), "\n")
         print(df['rating'].value_counts())
 
-        # Pie chart for Rating Proportions
-<<<<<<< HEAD
+        # Pie chart for Rating Proportion
         plt.figure(figsize=(3, 3))
-=======
         plt.figure(figsize=(5, 5))
->>>>>>> 217d03578a76234dcc4b642f8a869f42a394f047
         labels = df['rating'].value_counts().keys()
         values = df['rating'].value_counts().values
         exp = (0.1, 0, 0, 0, 0)
-        plt.pie(values, labels=labels,explode=(0.1, 0, 0, 0, 0), shadow=True, autopct='%1.1f%%')
+        plt.pie(values, labels=labels, explode=(0.1, 0, 0, 0, 0), shadow=True, autopct='%1.1f%%')
         plt.title('Rating Proportions', fontweight='bold', fontsize=40, pad=20, color='black')
         st.pyplot(plt.show())
 
         print(df['text_'][0])
-
 
         # Text Cleaning
         def clean_text(text):
@@ -69,6 +65,7 @@ if file is not None:
 
         df['text_'] = df['text_'].apply(clean_text)
         df['text_'] = df['text_'].astype(str)
+
         def preprocess(text):
             # Preprocesses the input text by tokenizing it, removing stopwords, and non-alphabetic characters.
             tokens = word_tokenize(text)
