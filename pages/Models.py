@@ -22,4 +22,3 @@ with st.expander('Select Model'):
         runDTREE()
     elif st.button('KNN Model'):
         runKNN()
-

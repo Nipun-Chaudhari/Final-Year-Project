@@ -71,10 +71,7 @@ def runNB():
 
         st.write("\nACCURACY OF NAIVE BAYES MODEL FOR TEST SIZE ", size, " = \n", accuracy_nb + '%')
 
-
-
     i = 1
-
 
     for size in test_size:
         print('-----------------ITERATION ', i, '-----------------\n\n')
