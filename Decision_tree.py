@@ -6,16 +6,20 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, accuracy_score, classification_report
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+import streamlit as st
 
 df = pd.read_csv('data.csv')
 data = pd.read_csv('datafile1.csv')
 
 test_size = [0.30, 0.35, 0.40, 0.45]
-random = np.random.randint(43000)
+# random = np.random.randint(43000)
 
 
 def runDTREE():
     def run_dtree():
+        # Initializing random review
+        random = np.random.randint(40000)
+
         # Splitting the data into training and testing data
         # state = int(size * 100)
         review_train, review_test, label_train, label_test = train_test_split(df['text_'], df['label'], test_size=size,
@@ -53,6 +57,17 @@ def runDTREE():
         print('\nReview is classified as : ', df['label'][random])
         pred = pipeline.predict([review])
         print('\nDecision Tree result : ', pred)
+
+        res = {'Test Size': [size],
+               'Random Review': [data['text_'][random]],
+               'Dataset Label': [df['label'][random]],
+               'Predicted Label': [pred]}
+
+        st.write('ITERATION ', i)
+
+        st.dataframe(res)
+
+        st.write("\nACCURACY OF DECISION TREE MODEL FOR TEST SIZE ", size, " = \n", accuracy_dtree + '%')
 
     i = 1
     for size in test_size:

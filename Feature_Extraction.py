@@ -1,9 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import warnings, string
+import warnings
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 
 warnings.filterwarnings('ignore')
-from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+
 
 df = pd.read_csv('data.csv')
 print("FIRST FEW RECORDS IN DATA\n", df.head())
