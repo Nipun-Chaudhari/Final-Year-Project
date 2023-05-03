@@ -19,6 +19,11 @@ def runKNN():
         random = np.random.randint(40000)
 
 
+<<<<<<< HEAD
+=======
+def runKNN():
+    def run_knn():
+>>>>>>> 217d03578a76234dcc4b642f8a869f42a394f047
         # Splitting the data into training and testing data
         # state = int(size * 100)
         review_train, review_test, label_train, label_test = train_test_split(df['text_'], df['label'], test_size=size,
@@ -44,6 +49,10 @@ def runKNN():
 
         # Accuracy score
         accuracy_knn = str(np.round(accuracy_score(label_test, predictions) * 100, 2))
+<<<<<<< HEAD
+=======
+        print("\nACCURACY OF KNN MODEL FOR TEST SIZE ", size, " = \n", accuracy_knn + '%')
+>>>>>>> 217d03578a76234dcc4b642f8a869f42a394f047
 
         # Classification report
         clf_report_knn = classification_report(label_test, predictions)
@@ -51,6 +60,7 @@ def runKNN():
 
         # Prediction
         review = df['text_'][random]
+<<<<<<< HEAD
         # print('Review : ', data['text_'][random])
         # print('\nReview is classified as : ', df['label'][random])
         pred = pipeline.predict([review])
@@ -67,6 +77,13 @@ def runKNN():
 
         st.write("\nACCURACY OF KNN MODEL FOR TEST SIZE ", size, " = \n", accuracy_knn + '%')
 
+=======
+        print('Review : ', data['text_'][random])
+        print('\nReview is classified as : ', df['label'][random])
+        pred = pipeline.predict([review])
+        print('\nKNN result : ', pred)
+
+>>>>>>> 217d03578a76234dcc4b642f8a869f42a394f047
     i = 1
     for size in test_size:
         print('---------------ITERATION ', i, '-----------------\n\n')

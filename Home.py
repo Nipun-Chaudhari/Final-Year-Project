@@ -1,9 +1,13 @@
+<<<<<<< HEAD
 import pandas as pd
 import streamlit as st
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
+=======
+import streamlit as st
+>>>>>>> 217d03578a76234dcc4b642f8a869f42a394f047
 
 # from Log_reg import run_log_reg
 
@@ -11,6 +15,7 @@ st.header("Fake Product Review Detection and Removal System Using Sentiment Anal
 review = st.text_area("Enter the Review")
 button = st.button('Check Review')
 
+<<<<<<< HEAD
 # if button:
 #     st.write(review)
 
@@ -28,3 +33,11 @@ if button:
         pred = pipeline.predict([review])
 
         st.success(pred[0])
+=======
+
+# Set Background Image
+
+
+# with st.sidebar():
+#     st.selectbox("Select Model")
+>>>>>>> 217d03578a76234dcc4b642f8a869f42a394f047

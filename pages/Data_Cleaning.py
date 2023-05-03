@@ -36,7 +36,11 @@ if file is not None:
         print(df['rating'].value_counts())
 
         # Pie chart for Rating Proportions
+<<<<<<< HEAD
         plt.figure(figsize=(3, 3))
+=======
+        plt.figure(figsize=(5, 5))
+>>>>>>> 217d03578a76234dcc4b642f8a869f42a394f047
         labels = df['rating'].value_counts().keys()
         values = df['rating'].value_counts().values
         exp = (0.1, 0, 0, 0, 0)
