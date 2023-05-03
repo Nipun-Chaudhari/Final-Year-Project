@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.pipeline import Pipeline
-from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, accuracy_score, classification_report
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
@@ -13,17 +13,10 @@ data = pd.read_csv('datafile1.csv')
 
 test_size = [0.30, 0.35, 0.40, 0.45]
 
+
 def runKNN():
     def run_knn():
-        # Initializing random test size
         random = np.random.randint(40000)
-
-
-<<<<<<< HEAD
-=======
-def runKNN():
-    def run_knn():
->>>>>>> 217d03578a76234dcc4b642f8a869f42a394f047
         # Splitting the data into training and testing data
         # state = int(size * 100)
         review_train, review_test, label_train, label_test = train_test_split(df['text_'], df['label'], test_size=size,
@@ -49,10 +42,7 @@ def runKNN():
 
         # Accuracy score
         accuracy_knn = str(np.round(accuracy_score(label_test, predictions) * 100, 2))
-<<<<<<< HEAD
-=======
         print("\nACCURACY OF KNN MODEL FOR TEST SIZE ", size, " = \n", accuracy_knn + '%')
->>>>>>> 217d03578a76234dcc4b642f8a869f42a394f047
 
         # Classification report
         clf_report_knn = classification_report(label_test, predictions)
@@ -60,7 +50,7 @@ def runKNN():
 
         # Prediction
         review = df['text_'][random]
-<<<<<<< HEAD
+
         # print('Review : ', data['text_'][random])
         # print('\nReview is classified as : ', df['label'][random])
         pred = pipeline.predict([review])
@@ -76,14 +66,12 @@ def runKNN():
         st.dataframe(res)
 
         st.write("\nACCURACY OF KNN MODEL FOR TEST SIZE ", size, " = \n", accuracy_knn + '%')
-
-=======
         print('Review : ', data['text_'][random])
         print('\nReview is classified as : ', df['label'][random])
         pred = pipeline.predict([review])
         print('\nKNN result : ', pred)
 
->>>>>>> 217d03578a76234dcc4b642f8a869f42a394f047
+
     i = 1
     for size in test_size:
         print('---------------ITERATION ', i, '-----------------\n\n')

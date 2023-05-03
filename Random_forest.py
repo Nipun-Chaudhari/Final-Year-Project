@@ -14,9 +14,10 @@ data = pd.read_csv('datafile1.csv')
 test_size = [0.30, 0.35, 0.40, 0.45]
 # random = np.random.randint(43000)
 
+
 def runRF():
     def run_random_forest():
-<<<<<<< HEAD
+
         # Initializing random review
         random = np.random.randint(40000)
 
@@ -49,7 +50,7 @@ def runRF():
 
         # Classification report
         clf_report_rf = classification_report(label_test, predictions)
-        # print("\nCLASSIFICATION REPORT FOR TEST SIZE ", size, " = \n", clf_report_rf)
+        print("\nCLASSIFICATION REPORT FOR TEST SIZE ", size, " = \n", clf_report_rf)
 
         # Prediction
         review = df['text_'][random]
@@ -69,7 +70,7 @@ def runRF():
 
         st.write("\nACCURACY OF RANDOM FOREST MODEL FOR TEST SIZE ", size, " = \n", accuracy_rf + '%')
 
-=======
+
         # Splitting the data into training and testing data
         # state = int(size * 100)
         review_train, review_test, label_train, label_test = train_test_split(df['text_'], df['label'], test_size=size,
@@ -108,7 +109,7 @@ def runRF():
         pred = pipeline.predict([review])
         print('\nRandom Forest Classifier result : ', pred)
 
->>>>>>> 217d03578a76234dcc4b642f8a869f42a394f047
+
     i = 1
     for size in test_size:
         # print('----------------ITERATION ', i, '-----------------\n\n')
