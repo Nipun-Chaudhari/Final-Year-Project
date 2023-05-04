@@ -111,6 +111,6 @@ if file is not None:
         df['label'].replace('OR', 'original', inplace=True)
 
         # Saving preprocessed reviews in new dataset
-        df.to_csv('data.csv')
+        # df.to_csv('data.csv')
 
     st.success('Done')
