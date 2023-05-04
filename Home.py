@@ -28,4 +28,4 @@ if button:
         pipeline.fit(review_train, label_train)
         pred = pipeline.predict([review])
 
-        st.success('This review is ', pred[0])
+        st.success(f'This review is {pred[0]}')
