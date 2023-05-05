@@ -7,6 +7,7 @@ from Naive_B import runNB
 from K_Nearest import runKNN
 
 st.title('Models')
+st.text('Train Machine Learning model on entire data')
 
 with st.expander('Select Model to train'):
 
