@@ -11,12 +11,11 @@ import streamlit as st
 df = pd.read_csv('data.csv')
 data = pd.read_csv('datafile1.csv')
 
-test_size = [0.30, 0.35, 0.40, 0.45]
+test_size = [0.45, 0.40, 0.35, 0.30]
 
 
 def runSVC():
     def run_svc():
-
         # Initializing random test size
         random = np.random.randint(40000)
         # Splitting the data into training and testing data
@@ -44,7 +43,7 @@ def runSVC():
 
         # Accuracy score
         accuracy_svc = str(np.round(accuracy_score(label_test, predictions) * 100, 2))
-        # print("\nACCURACY OF SVC(Support Vector Classifier) MODEL FOR TEST SIZE ", size, " = \n", accuracy_svc + '%')
+        print("\nACCURACY OF SVC(Support Vector Classifier) MODEL FOR TEST SIZE ", size, " = \n", accuracy_svc + '%')
 
         # Classification report
         clf_report_svc = classification_report(label_test, predictions)
@@ -52,10 +51,10 @@ def runSVC():
 
         # Prediction
         review = df['text_'][random]
-        # print('Review : ', data['text_'][random])
-        # print('\nReview is classified as : ', df['label'][random])
+        print('Review : ', data['text_'][random])
+        print('\nReview is classified as : ', df['label'][random])
         pred = pipeline.predict([review])
-        # print('\nSupport Vector Classifier result : ', pred)
+        print('\nSupport Vector Classifier result : ', pred)
 
         res = {'Test Size': [size],
                'Random Review': [data['text_'][random]],
@@ -76,3 +75,8 @@ def runSVC():
         i += 1
 
 
+def removeSVM():
+    data1 = pd.read_csv('datafile1.csv')
+    data1 = data1[data1['label'] != 'OR']
+    st.info("Data After Removing Fake Reviews")
+    st.dataframe(data1.head())

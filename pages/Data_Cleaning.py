@@ -114,3 +114,7 @@ if file is not None:
         # df.to_csv('data.csv')
 
     st.success('Done')
+
+cleaning = open("Cleaning.txt", "r")
+st.title("Description")
+st.write(cleaning.read())

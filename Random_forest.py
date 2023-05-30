@@ -11,13 +11,14 @@ import streamlit as st
 df = pd.read_csv('data.csv')
 data = pd.read_csv('datafile1.csv')
 
-test_size = [0.30, 0.35, 0.40, 0.45]
+test_size = [0.45, 0.40, 0.35, 0.30]
+
+
 # random = np.random.randint(43000)
 
 
 def runRF():
     def run_random_forest():
-
         # Initializing random review
         random = np.random.randint(40000)
 
@@ -76,3 +77,10 @@ def runRF():
         run_random_forest()
         # print('\n\n')
         i += 1
+
+
+def removeRF():
+    data1 = pd.read_csv('datafile1.csv')
+    data1 = data1[data1['label'] != 'OR']
+    st.info("Data After Removing Fake Reviews")
+    st.dataframe(data1.head())

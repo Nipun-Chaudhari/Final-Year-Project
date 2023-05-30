@@ -11,7 +11,7 @@ import streamlit as st
 df = pd.read_csv('data.csv')
 data = pd.read_csv('datafile1.csv')
 
-test_size = [0.30, 0.35, 0.40, 0.45]
+test_size = [0.45, 0.40, 0.35, 0.30]
 
 # random = np.random.randint(40000)
 
@@ -19,15 +19,14 @@ df['text_'].fillna('')
 
 random = np.random.randint(40000)
 
-
 df['text_'].fillna('')
+
 
 def runLR():
     def run_log_reg():
-
         # Initializing random review
         random = np.random.randint(40000)
-
+        data1 = pd.read_csv('datafile1.csv')
         # Splitting the data into training and testing data
         # state = int(size * 100)
         review_train, review_test, label_train, label_test = train_test_split(df['text_'], df['label'], test_size=size,
@@ -44,11 +43,11 @@ def runLR():
         predictions = pipeline.predict(review_test)
         print(predictions)
 
-        # Confusion matrix of Multinomial Naive Bayes
+        # Confusion matrix of logistic regression
         con_mat_logistic = confusion_matrix(label_test, predictions)
         disp_logreg = ConfusionMatrixDisplay(confusion_matrix=con_mat_logistic, display_labels=['Fake', 'Original'])
         disp_logreg.plot(cmap=plt.cm.Blues)
-        # plt.title('Confusion matrix for test size ',size)
+        plt.title(f'Confusion matrix for test data size {size}')
         plt.show()
 
         # Accuracy score
@@ -78,6 +77,7 @@ def runLR():
         st.write("\nACCURACY OF LOGISTIC REGRESSION FOR TEST SIZE ", size, " = \n", accuracy_logreg + '%')
 
     i = 1
+
     for size in test_size:
         print('---------------ITERATION ', i, '-----------------\n\n')
         run_log_reg()
@@ -85,3 +85,8 @@ def runLR():
         i += 1
 
 
+def removeLR():
+    data1 = pd.read_csv('datafile1.csv')
+    data1 = data1[data1['label'] != 'OR']
+    st.info("Data After Removing Fake Reviews")
+    st.dataframe(data1.head())

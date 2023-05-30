@@ -11,13 +11,14 @@ import streamlit as st
 df = pd.read_csv('data.csv')
 data = pd.read_csv('datafile1.csv')
 
-test_size = [0.30, 0.35, 0.40, 0.45]
+test_size = [0.45, 0.40, 0.35, 0.30]
+
+
 # random = np.random.randint(43000)
 
 
 def runDTREE():
     def run_dtree():
-
         # Initializing random review
         random = np.random.randint(40000)
 
@@ -70,10 +71,16 @@ def runDTREE():
 
         st.write("\nACCURACY OF DECISION TREE MODEL FOR TEST SIZE ", size, " = \n", accuracy_dtree + '%')
 
-
     i = 1
     for size in test_size:
         print('---------------ITERATION ', i, '-----------------\n\n')
         run_dtree()
         print('\n\n')
         i += 1
+
+
+def removeDTC():
+    data1 = pd.read_csv('datafile1.csv')
+    data1 = data1[data1['label'] != 'OR']
+    st.info("Data After Removing Fake Reviews")
+    st.dataframe(data1.head())
